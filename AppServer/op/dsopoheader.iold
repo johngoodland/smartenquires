@@ -1,0 +1,23 @@
+
+/*------------------------------------------------------------------------
+    File        : dsopoheader.i
+    Purpose     : 
+
+    Syntax      :
+
+    Description : dataset order header
+
+    Author(s)   : johng
+    Created     : Thu Feb 13 13:45:02 GMT 2014
+    Notes       :
+  ----------------------------------------------------------------------*/
+
+/* ***************************  Definitions  ************************** */
+
+
+/* ********************  Preprocessor Definitions  ******************** */
+
+
+/* ***************************  Main Block  *************************** */
+
+DEFINE DATASET dsop_oheader FOR ttop_oheader.
