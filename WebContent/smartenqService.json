@@ -1,0 +1,48 @@
+{
+    "version": "1.0",
+    "lastModified": "Fri Feb 14 08:40:18 GMT 2014",
+    "services": [{
+        "name": "smartenqService",
+        "address": "\/rest\/smartenqService",
+        "useRequest": true,
+        "resources": [{
+            "name": "order",
+            "path": "\/order",
+            "operations": [
+                {
+                    "path": "?filter={filter}",
+                    "type": "read",
+                    "verb": "get",
+                    "params": []
+                },
+                {
+                    "path": "",
+                    "type": "create",
+                    "verb": "post",
+                    "params": [{
+                        "name": "dsop_oheader",
+                        "type": "REQUEST_BODY"
+                    }]
+                },
+                {
+                    "path": "",
+                    "type": "delete",
+                    "verb": "delete",
+                    "params": [{
+                        "name": "dsop_oheader",
+                        "type": "REQUEST_BODY"
+                    }]
+                },
+                {
+                    "path": "",
+                    "type": "update",
+                    "verb": "put",
+                    "params": [{
+                        "name": "dsop_oheader",
+                        "type": "REQUEST_BODY"
+                    }]
+                }
+            ]
+        }]
+    }]
+}
