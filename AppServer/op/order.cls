@@ -23,11 +23,11 @@ CLASS op.order INHERITS BusinessEntity:
             Purpose:                                                                      
             Notes:                                                                        
     ------------------------------------------------------------------------------*/
-	
-	
+	 
+	{"op/ttopoheader.i"}
 	{"op/dsopoheader.i"} 
-	
-	
+	{"op/dsopsupplierheader.i"} 
+	    
     /*------------------------------------------------------------------------------
             Purpose:  Get one or more records, based on a filter string                                                                     
             Notes:                                                                        
@@ -88,6 +88,51 @@ CLASS op.order INHERITS BusinessEntity:
 	   
         /* TODO: Add code to delete a record passed in from the client. */   
     END METHOD.
-	 
-          
+	   
+    /*------------------------------------------------------------------------------
+            Purpose:  get order header details                                                                     
+            Notes:                                                                        
+    ------------------------------------------------------------------------------*/
+   
+    @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
+    @progress.service.resourceMapping(type="REST", operation="invoke", URI="/getOrderHeader?filter=~{filter~}", alias="", mediaType="application/json"). 
+    METHOD PUBLIC VOID getOrderHeader
+          (INPUT piCompany      AS INTEGER,
+           INPUT pcSupplier     AS CHARACTER,
+           INPUT pcBranch       AS CHARACTER,
+           INPUT pcRqstby       AS CHARACTER,
+           INPUT pcxChar2       AS CHARACTER,
+           INPUT cFilterName    AS CHARACTER,
+           INPUT filter         AS CHARACTER,
+           OUTPUT DATASET dsop_supplierheader):  
+     /* call RegisterMobex API */
+    DEFINE VARIABLE plErrorFlag       AS LOGICAL   NO-UNDO.
+    DEFINE VARIABLE pcErrorText       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cString           AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cJSONString       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE pcUserID          AS CHARACTER NO-UNDO.
+    
+    MESSAGE "in calling getorderheader*****".
+    MESSAGE piCompany.
+    MESSAGE pcSupplier.
+  MESSAGE pcBranch.
+  MESSAGE pcRqstby.
+  MESSAGE pcxChar2.
+    IF pcBranch = ? THEN pcBranch = "".
+    IF pcRqstby = ? THEN pcRqstby = "".
+    IF pcxChar2 = ? THEN pcxChar2 = "".
+    DEFINE VARIABLE beopsupplierheader AS CLASS op.beopsupplierheader NO-UNDO .
+    beopsupplierheader = NEW op.beopsupplierheader () .
+
+    beopsupplierheader:fetchSupplierHeaderData
+      (INPUT piCompany, INPUT pcSupplier, INPUT pcBranch, INPUT pcRqstby, INPUT pcxChar2, INPUT filter, OUTPUT DATASET dsop_supplierheader) .
+
+    /* deleted : APPLY "close" TO hComponent . */
+    DELETE OBJECT beopsupplierheader .
+      
+    
+    /* output pcresult back to the device and comma separate the data - saves having to code for several return variables in OEMobile */
+ 
+    /* pcresult will be mileagecalclicenses, groupschanged, typeschanged, lerrorflag, cerrortext, bing key, updatedatetime */
+    END METHOD.          
 END CLASS.

@@ -17,11 +17,11 @@
 
 /* ********************  Preprocessor Definitions  ******************** */
 
-
+ 
 /* ***************************  Main Block  *************************** */
-
+  
 CLASS op.beopoheader :
-
+  {op/ttopoheader.i}
 	{op/dsopoheader.i}
     
     DEFINE PRIVATE VARIABLE daopoheader AS CLASS op.daopoheader NO-UNDO.
@@ -37,7 +37,7 @@ CLASS op.beopoheader :
         DELETE OBJECT daopoheader NO-ERROR .
     
     END DESTRUCTOR .
-    
+     
     METHOD PUBLIC VOID fetchOrderHeaderData (
         INPUT  cFilterName AS CHARACTER,
         OUTPUT DATASET FOR dsop_oheader) :
@@ -62,7 +62,7 @@ CLASS op.beopoheader :
     
     END METHOD .
     
-    METHOD PUBLIC VOID checkPremiumAccess (
+    METHOD PUBLIC VOID checkOrderStatus (
         INPUT  cCustomerID AS CHARACTER,  
         OUTPUT lPremium    AS LOGICAL):
         
@@ -76,4 +76,5 @@ CLASS op.beopoheader :
         
     END METHOD .
     
+
 END CLASS .
