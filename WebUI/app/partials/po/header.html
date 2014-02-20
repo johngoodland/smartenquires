@@ -1,0 +1,75 @@
+<div class="TabFolderRow" >
+	
+	<table>
+		<tr>
+			<td width="150" align="right"><strong>Department:</strong></td>
+			<td width="100">{{selectedRows[0].branch}}</td>
+			<td width="100"></td>
+			<td width="150" align="right"><strong>Status:</strong></td>
+			<td width="100">{{selectedRows[0].ordsta}}</td>
+		</tr>
+	</table>
+			
+	<table>
+		<tr>
+			<td width="150" align="right"><strong>Supplier:</strong></td>
+			<td width="100">{{selectedRows[0].acccod}}</td>
+			<td width="100"></td>
+		</tr>
+	</table>
+		
+	<table>
+		<tr>
+			<td width="150" align="right"><strong>Address:</strong></td>
+			<td width="100">{{selectedRows[0].ordadd1}}</td>
+		</tr>
+	</table>
+		
+	<table>
+		<tr>
+			<td width="150" align="right"><strong>Order Number:</strong></td>
+			<td width="100">{{selectedRows[0].ordnum}}</td>
+			<td width="150" align="right"><strong>Order Value:</strong></td>
+			<td width="100">{{selectedRows[0].ordval | currency}}</td>
+			<td width="150" align="right"><strong>Currency:</strong></td>
+			<td width="100">{{selectedRows[0].curcod}}</td>
+		</tr>
+	</table>
+		 
+	<table>
+		<tr>
+			<td width="150" align="right"><strong>Order Date:</strong></td>
+			<td width="100">{{selectedRows[0].orddat | date:'dd/MM/yyyy'}}</td>
+			<td width="150" align="right"><strong>Base Value:</strong></td>
+			<td width="100">{{selectedRows[0].basval | currency}}</td>
+			<td width="150" align="right"><strong>Base Currency:</strong></td>
+			<td width="100">{{selectedRows[0].curcod}}</td>
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+			<td width="150" align="right"><strong>GRN Required:</strong></td>
+			<td width="100">{{selectedRows[0].pornum}}</td>
+		</tr>
+	</table>
+		
+	<table>
+		<tr>
+			<td width="150" align="right"><strong>Contact Name:</strong></td>
+			<td width="100">{{selectedRows[0].connam}}</td>
+			<td width="150" align="right"><strong>Phone:</strong></td>
+			<td width="100">{{selectedRows[0].telnum}}</td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<td width="150" align="right"><strong>Their Ref:</strong></td>
+			<td width="100">{{selectedRows[0].cusref}}</td>
+			<td width="150" align="right"><strong>Our Ref:</strong></td>
+			<td width="100">{{selectedRows[0].ourref}}</td>
+		</tr>
+	</table>
+	
+</div>	

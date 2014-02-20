@@ -1,0 +1,10 @@
+<div class="row" ng-controller="SecondTabCtrl">
+  <h2>{{ title }} Test</h2>
+	<div class="ngGridStyle" ng-grid="myGrid">
+    </div> 
+	<div>
+		<b>You selected the following</b>
+		<br>
+		{{selectedRows[0].branch}} {{selectedRows[0].acccod}} {{selectedRows[0].ordnum}}
+	</div>	
+  </div>

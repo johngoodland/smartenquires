@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+	<head>
+		<title>Document</title>
+	</head>
+	<body>
+		<div ng-controller="theController">
+			<!--
+			{{providerValue}}
+			<br>
+			{{factoryValue}}
+			<br>
+			{{serviceValue}}
+			<br>
+			{{Users[1].name}}
+			<br>
+			{{User.name}}
+			<br>
+			-->
+			Expenses: {{Expenses[0].expenseAmount}}
+			<br>
+			Parameters: {{param}}
+		</div>
+		
+		<script src="Library/angular/angular.min.js"></script>
+		<script src="app.js"></script>
+		<script src="dataservices.js"></script>
+		
+		<script>
+			/*
+			function Service($http){
+				//var expenses = [];
+				var users = [
+							{name: 'A'},
+							{name: 'B'}
+							];
+					this.getAllExpenses = function() {
+							var url = "http://omexpenses.no-ip.net:8980/mobileexpenses/rest/mobileexpenses/Claims?filter=%7B%22UserID%22%3A%22demoa%22%2C%22FilterDate%22%3A%222013-11-30%22%7D";
+							return $http.get(url);
+							}
+					this.getExpenses = function () {
+					    this.getAllExpenses().success(function(_expenses) {
+						expenses = _expenses.eClaims;
+						alert(expenses[0].expenseAmount);
+						return expenses;
+						});
+						
+						return null;
+					}
+					
+				    this.getUsers = function () {
+						return users;
+						};
+						
+					this.getUser = function (id) {
+						for (var i = 0; i < users.length; i++) {
+							if (users[i].name === id) {
+								return users[i];
+							}
+						}
+						return null;
+					};						
+			}
+			*/
+			//Service.prototype.log = function(){ return "Service" }
+			//var s = new Service;
+			//console.log(s.log());
+			
+			//angular.module('app', []).
+//			provider('theProvider', { $get: function(){ return "Provider" }}).
+//			factory('theFactory', function(){ return "Factory"} ).
+//			service('theService', Service).
+//			controller('theController', 
+//					['$scope', 'theProvider', 'theFactory', 'theService',
+//						function($scope, theProvider, theFactory, theService){
+//							$scope.providerValue = theProvider
+//							$scope.factoryValue = theFactory
+//							//$scope.serviceValue = theService.log()
+//						
+//							$scope.Users = theService.getUsers()
+//							$scope.User  = theService.getUser('A');
+							//$scope.Expenses = theService.getExpenses();
+							
+//							theService.getAllExpenses().success(function(data) {$scope.Expenses = data.eClaims});
+							//var Expenses = theService.getExpenses();
+							//alert(Expenses);
+//						}])
+		</script>
+		
+	</body>
+</html>
