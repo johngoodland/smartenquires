@@ -1,14 +1,13 @@
-
 /*------------------------------------------------------------------------
-    File        : customer.p
+    File        : beopsupplierheader.cls
     Purpose     : 
 
     Syntax      :
 
     Description : 
 
-    Author(s)   : AppTech
-    Created     : Fri Jan 26 09:39:53 GMT 2007
+    Author(s)   : johng
+    Created     : Feb 2014
     Notes       :
   ----------------------------------------------------------------------*/
 

@@ -26,7 +26,8 @@ CLASS op.order INHERITS BusinessEntity:
 	 
 	{"op/ttopoheader.i"}
 	{"op/dsopoheader.i"} 
-	{"op/dsopsupplierheader.i"} 
+	{"op/dsopsupplierheader.i"}
+	{"op/dsoaanlysis.i"} 
 	    
     /*------------------------------------------------------------------------------
             Purpose:  Get one or more records, based on a filter string                                                                     
@@ -113,11 +114,7 @@ CLASS op.order INHERITS BusinessEntity:
     DEFINE VARIABLE pcUserID          AS CHARACTER NO-UNDO.
     
     MESSAGE "in calling getorderheader*****".
-    MESSAGE piCompany.
-    MESSAGE pcSupplier.
-  MESSAGE pcBranch.
-  MESSAGE pcRqstby.
-  MESSAGE pcxChar2.
+ 
     IF pcBranch = ? THEN pcBranch = "".
     IF pcRqstby = ? THEN pcRqstby = "".
     IF pcxChar2 = ? THEN pcxChar2 = "".
@@ -129,10 +126,43 @@ CLASS op.order INHERITS BusinessEntity:
 
     /* deleted : APPLY "close" TO hComponent . */
     DELETE OBJECT beopsupplierheader .
-      
-    
-    /* output pcresult back to the device and comma separate the data - saves having to code for several return variables in OEMobile */
  
-    /* pcresult will be mileagecalclicenses, groupschanged, typeschanged, lerrorflag, cerrortext, bing key, updatedatetime */
+    END METHOD.  
+            
+ /*------------------------------------------------------------------------------
+            Purpose:  get analysis for company, branch order number                                                                     
+            Notes:                                                                        
+    ------------------------------------------------------------------------------*/
+   
+    @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
+    @progress.service.resourceMapping(type="REST", operation="invoke", URI="/getOrderAnlysis?filter=~{filter~}", alias="", mediaType="application/json"). 
+    METHOD PUBLIC VOID getOrderAnlysis
+          (INPUT piCompany      AS INTEGER,
+           INPUT pcBranch       AS CHARACTER,
+           INPUT piOrdNum       AS INTEGER,
+           INPUT cFilterName    AS CHARACTER,
+           INPUT filter         AS CHARACTER,
+           OUTPUT DATASET dsoa_anlysis):  
+     /* call RegisterMobex API */
+    DEFINE VARIABLE plErrorFlag       AS LOGICAL   NO-UNDO.
+    DEFINE VARIABLE pcErrorText       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cString           AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cJSONString       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE pcUserID          AS CHARACTER NO-UNDO.
+     
+    MESSAGE "in calling getanlysis*****".
+ 
+    IF pcBranch = ? THEN pcBranch = "".
+    IF piOrdNum = ? THEN piOrdNum = 0.
+  
+    DEFINE VARIABLE beoaanlysis AS CLASS op.beoaanlysis NO-UNDO .
+    beoaanlysis = NEW op.beoaanlysis () .
+
+    beoaanlysis:fetchOrderAnlysisData
+      (INPUT piCompany, INPUT pcBranch, INPUT piOrdNum, INPUT filter, OUTPUT DATASET dsoa_anlysis) .
+
+    /* deleted : APPLY "close" TO hComponent . */
+    DELETE OBJECT  beoaanlysis .
+ 
     END METHOD.          
 END CLASS.
