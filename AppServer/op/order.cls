@@ -9,7 +9,7 @@
     
 @program FILE(name="order.cls", module="AppServer").
 @openapi.openedge.export FILE(type="REST", executionMode="singleton", useReturnValue="false", writeDataSetBeforeImage="false").
-@progress.service.resource FILE(name="order", URI="/order", schemaName="dsop_oheader", schemaFile="op/dsopoheader.i").
+@progress.service.resource FILE(name="order", URI="/order", schemaName="dsop_oheader", schemaFile="op/schemas/dsopoheader.i").
 
 USING Progress.Json.ObjectModel.JsonObject.
 USING Progress.Json.ObjectModel.JsonArray.
@@ -23,11 +23,14 @@ CLASS op.order INHERITS BusinessEntity:
             Purpose:                                                                      
             Notes:                                                                        
     ------------------------------------------------------------------------------*/
-	 
-	{"op/ttopoheader.i"}
-	{"op/dsopoheader.i"} 
-	{"op/dsopsupplierheader.i"}
-	{"op/dsoaanlysis.i"} 
+	  
+	{"op/schemas/ttopoheader.i"}
+	{"op/schemas/dsopoheader.i"} 
+	{"op/schemas/dsopsupplierheader.i"}
+	{"op/schemas/dsoaanlysis.i"} 
+	{"op/schemas/dsopoextras.i"}
+	{"op/schemas/dsopohistory.i"}
+	{"op/schemas/dsopdetail.i"}
 	    
     /*------------------------------------------------------------------------------
             Purpose:  Get one or more records, based on a filter string                                                                     
@@ -133,7 +136,7 @@ CLASS op.order INHERITS BusinessEntity:
             Purpose:  get analysis for company, branch order number                                                                     
             Notes:                                                                        
     ------------------------------------------------------------------------------*/
-   
+    
     @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
     @progress.service.resourceMapping(type="REST", operation="invoke", URI="/getOrderAnlysis?filter=~{filter~}", alias="", mediaType="application/json"). 
     METHOD PUBLIC VOID getOrderAnlysis
@@ -164,5 +167,113 @@ CLASS op.order INHERITS BusinessEntity:
     /* deleted : APPLY "close" TO hComponent . */
     DELETE OBJECT  beoaanlysis .
  
-    END METHOD.          
+    END METHOD.      
+     /*------------------------------------------------------------------------------
+            Purpose:  get analysis for company, branch order number                                                                     
+            Notes:                                                                        
+    ------------------------------------------------------------------------------*/
+    
+    @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
+    @progress.service.resourceMapping(type="REST", operation="invoke", URI="/getOrderExtra?filter=~{filter~}", alias="", mediaType="application/json"). 
+    METHOD PUBLIC VOID getOrderExtra
+          (INPUT piCompany      AS INTEGER,
+           INPUT pcBranch       AS CHARACTER,
+           INPUT piOrdNum       AS INTEGER,
+           INPUT cFilterName    AS CHARACTER,
+           INPUT filter         AS CHARACTER,
+           OUTPUT DATASET dsop_oextras):  
+     /* call RegisterMobex API */
+    DEFINE VARIABLE plErrorFlag       AS LOGICAL   NO-UNDO.
+    DEFINE VARIABLE pcErrorText       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cString           AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cJSONString       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE pcUserID          AS CHARACTER NO-UNDO.
+     
+    MESSAGE "in calling get order extra*****".
+ 
+    IF pcBranch = ? THEN pcBranch = "".
+    IF piOrdNum = ? THEN piOrdNum = 0.
+  
+    DEFINE VARIABLE beopextras AS CLASS op.beopoextras NO-UNDO .
+    beopextras = NEW op.beopoextras () .
+
+    beopextras:fetchOrderExtraData
+      (INPUT piCompany, INPUT pcBranch, INPUT piOrdNum, INPUT filter, OUTPUT DATASET  dsop_oextras) .
+
+    /* deleted : APPLY "close" TO hComponent . */
+    DELETE OBJECT  beopextras .
+ 
+    END METHOD.      
+     /*------------------------------------------------------------------------------
+            Purpose:  get history for company, branch order number                                                                     
+            Notes:                                                                        
+    ------------------------------------------------------------------------------*/
+       
+    @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
+    @progress.service.resourceMapping(type="REST", operation="invoke", URI="/getOrderHistory?filter=~{filter~}", alias="", mediaType="application/json"). 
+    METHOD PUBLIC VOID getOrderHistory
+          (INPUT piCompany      AS INTEGER,
+           INPUT pcBranch       AS CHARACTER,
+           INPUT piOrdNum       AS INTEGER,
+           INPUT cFilterName    AS CHARACTER,
+           INPUT filter         AS CHARACTER,
+           OUTPUT DATASET dsop_ohistory):  
+     /* call RegisterMobex API */
+    DEFINE VARIABLE plErrorFlag       AS LOGICAL   NO-UNDO.
+    DEFINE VARIABLE pcErrorText       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cString           AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cJSONString       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE pcUserID          AS CHARACTER NO-UNDO.
+     
+    MESSAGE "in calling get order history*****".
+ 
+    IF pcBranch = ? THEN pcBranch = "".
+    IF piOrdNum = ? THEN piOrdNum = 0.
+  
+    DEFINE VARIABLE beophistory AS CLASS op.beopohistory NO-UNDO .
+    beophistory = NEW op.beopohistory () .
+
+    beophistory:fetchOrderHistoryData
+      (INPUT piCompany, INPUT pcBranch, INPUT piOrdNum, INPUT filter, OUTPUT DATASET  dsop_ohistory) .
+
+    /* deleted : APPLY "close" TO hComponent . */
+    DELETE OBJECT  beophistory.
+ 
+    END METHOD.    
+    /*------------------------------------------------------------------------------
+            Purpose:  get orderlines for order                                                                     
+            Notes:                                                                        
+    ------------------------------------------------------------------------------*/
+       
+    @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
+    @progress.service.resourceMapping(type="REST", operation="invoke", URI="/getOrderLines?filter=~{filter~}", alias="", mediaType="application/json"). 
+    METHOD PUBLIC VOID getOrderLines
+          (INPUT piCompany      AS INTEGER,
+           INPUT pcBranch       AS CHARACTER,
+           INPUT piOrdNum       AS INTEGER,
+           INPUT cFilterName    AS CHARACTER,
+           INPUT filter         AS CHARACTER,
+           OUTPUT DATASET dsop_detail):  
+     /* call RegisterMobex API */
+    DEFINE VARIABLE plErrorFlag       AS LOGICAL   NO-UNDO.
+    DEFINE VARIABLE pcErrorText       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cString           AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE cJSONString       AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE pcUserID          AS CHARACTER NO-UNDO.
+     
+    MESSAGE "in calling get order lines*****".
+ 
+    IF pcBranch = ? THEN pcBranch = "".
+    IF piOrdNum = ? THEN piOrdNum = 0.
+  
+    DEFINE VARIABLE beopdetail AS CLASS op.beopdetail  NO-UNDO .
+    beopdetail  = NEW op.beopdetail  () .
+ 
+    beopdetail:fetchOrderLinesData
+      (INPUT piCompany, INPUT pcBranch, INPUT piOrdNum, INPUT filter, OUTPUT DATASET dsop_detail) .
+
+    /* deleted : APPLY "close" TO hComponent . */
+    DELETE OBJECT  beopdetail.
+ 
+    END METHOD.  
 END CLASS.

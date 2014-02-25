@@ -20,8 +20,8 @@
 /* ***************************  Main Block  *************************** */
 
 CLASS op.daopoheader :
-  {op/ttopoheader.i}
-	{op/dsopoheader.i}
+  {op/schemas/ttopoheader.i}
+	{op/schemas/dsopoheader.i}
      
     CONSTRUCTOR PUBLIC daopoheader () :
         

@@ -20,8 +20,8 @@
 /* ***************************  Main Block  *************************** */
   
 CLASS op.daopsupplierheader :
-  {op/ttopoheader.i}
-  {op/dsopsupplierheader.i}
+  {op/schemas/ttopoheader.i}
+  {op/schemas/dsopsupplierheader.i}
     CONSTRUCTOR PUBLIC daopsupplierheader () :
          
             

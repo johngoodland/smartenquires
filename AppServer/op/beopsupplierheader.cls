@@ -20,8 +20,8 @@
 /* ***************************  Main Block  *************************** */
  
 CLASS op.beopsupplierheader :
-  {op/ttopoheader.i}
-  {op/dsopsupplierheader.i}
+  {op/schemas/ttopoheader.i}
+  {op/schemas/dsopsupplierheader.i}
     
     DEFINE PRIVATE VARIABLE daopsupplierheader AS CLASS op.daopsupplierheader NO-UNDO.
     

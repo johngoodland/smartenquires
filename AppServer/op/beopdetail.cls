@@ -1,6 +1,6 @@
 
 /*------------------------------------------------------------------------
-    File        : beoaanlysis.cls
+    File        : beopodetail.cls
     Purpose     : 
 
     Syntax      :
@@ -13,44 +13,44 @@
   ----------------------------------------------------------------------*/
 
 /* ***************************  Definitions  ************************** */
- 
+
 
 /* ********************  Preprocessor Definitions  ******************** */
 
  
 /* ***************************  Main Block  *************************** */
   
-CLASS op.beoaanlysis :
-	 {"op/schemas/dsoaanlysis.i"} 
-     
-    DEFINE PRIVATE VARIABLE daoaanlysis AS CLASS op.daoaanlysis NO-UNDO.
+CLASS op.beopdetail :
+	 {"op/schemas/dsopdetail.i"} 
+      
+    DEFINE PRIVATE VARIABLE daopdetail AS CLASS op.daopdetail NO-UNDO.
     
-    CONSTRUCTOR PUBLIC beoaanlysis () :
+    CONSTRUCTOR PUBLIC beopdetail () :
         
-        daoaanlysis = NEW op.daoaanlysis () .
+        daopdetail = NEW op.daopdetail () .
                 
     END CONSTRUCTOR . 
     
-    DESTRUCTOR PUBLIC beoaanlysis () :
-    
-        DELETE OBJECT daoaanlysis NO-ERROR .
+    DESTRUCTOR PUBLIC beopdetail () :
+     
+        DELETE OBJECT daopdetail NO-ERROR .
     
     END DESTRUCTOR .
      
-    METHOD PUBLIC VOID fetchOrderAnlysisData (
+    METHOD PUBLIC VOID fetchOrderLinesData (
         INPUT  piCompany   AS INTEGER,
         INPUT  pcBranch    AS CHARACTER,
         INPUT  piOrdNum    AS INTEGER,
         INPUT  cFilterName AS CHARACTER,
-        OUTPUT DATASET FOR dsoa_anlysis) :
+        OUTPUT DATASET FOR dsop_detail) :
      
-        daoaanlysis:fetchOrderAnlysisData
-            (INPUT piCompany, INPUT pcBranch, INPUT piOrdNum, INPUT cFilterName, OUTPUT DATASET dsoa_anlysis) .
+        daopdetail:fetchOrderLinesData
+            (INPUT piCompany, INPUT pcBranch, INPUT piOrdNum, INPUT cFilterName, OUTPUT DATASET dsop_detail) .
             
     END METHOD .    
     
-    METHOD PUBLIC VOID changeOrderAnlysisData (
-        INPUT-OUTPUT DATASET FOR dsoa_anlysis):
+    METHOD PUBLIC VOID changeOrderLinesData (
+        INPUT-OUTPUT DATASET FOR dsop_detail):
 /*                                                       */
 /*        FOR EACH ttop_oheader :                        */
 /*                                                       */
@@ -59,8 +59,8 @@ CLASS op.beoaanlysis :
 /*          */                                           */
 /*        END .                                          */
     
-        daoaanlysis:changeOrderAnlysisData 
-            (INPUT-OUTPUT DATASET dsoa_anlysis) .
+        daopdetail:changeOrderLinesData 
+            (INPUT-OUTPUT DATASET dsop_detail) .
     
     END METHOD .
     

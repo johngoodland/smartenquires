@@ -21,8 +21,8 @@
 /* ***************************  Main Block  *************************** */
   
 CLASS op.beopoheader :
-  {op/ttopoheader.i}
-	{op/dsopoheader.i}
+  {op/schemas/ttopoheader.i}
+	{op/schemas/dsopoheader.i}
     
     DEFINE PRIVATE VARIABLE daopoheader AS CLASS op.daopoheader NO-UNDO.
     

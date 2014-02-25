@@ -20,7 +20,7 @@
 /* ***************************  Main Block  *************************** */
 
 CLASS op.daoaanlysis :
-   {"op/dsoaanlysis.i"} 
+   {"op/schemas/dsoaanlysis.i"} 
      
     CONSTRUCTOR PUBLIC daoaanlysis () :
         
