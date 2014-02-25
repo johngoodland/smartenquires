@@ -1,6 +1,6 @@
 {
     "version": "1.0",
-    "lastModified": "Fri Feb 14 08:40:18 GMT 2014",
+    "lastModified": "Tue Feb 25 11:59:39 GMT 2014",
     "services": [{
         "name": "smartenqService",
         "address": "\/rest\/smartenqService",
@@ -25,6 +25,30 @@
                     }]
                 },
                 {
+                    "name": "getOrderExtra",
+                    "path": "\/getOrderExtra?filter={filter}",
+                    "type": "invoke",
+                    "verb": "put",
+                    "params": [
+                        {
+                            "name": "piCompany",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "pcBranch",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "piOrdNum",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "cFilterName",
+                            "type": "REQUEST_BODY"
+                        }
+                    ]
+                },
+                {
                     "path": "",
                     "type": "delete",
                     "verb": "delete",
@@ -41,6 +65,110 @@
                         "name": "dsop_oheader",
                         "type": "REQUEST_BODY"
                     }]
+                },
+                {
+                    "name": "getOrderHistory",
+                    "path": "\/getOrderHistory?filter={filter}",
+                    "type": "invoke",
+                    "verb": "put",
+                    "params": [
+                        {
+                            "name": "piCompany",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "pcBranch",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "piOrdNum",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "cFilterName",
+                            "type": "REQUEST_BODY"
+                        }
+                    ]
+                },
+                {
+                    "name": "getOrderHeader",
+                    "path": "\/getOrderHeader?filter={filter}",
+                    "type": "invoke",
+                    "verb": "put",
+                    "params": [
+                        {
+                            "name": "piCompany",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "pcSupplier",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "pcBranch",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "pcRqstby",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "pcxChar2",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "cFilterName",
+                            "type": "REQUEST_BODY"
+                        }
+                    ]
+                },
+                {
+                    "name": "getOrderAnlysis",
+                    "path": "\/getOrderAnlysis?filter={filter}",
+                    "type": "invoke",
+                    "verb": "put",
+                    "params": [
+                        {
+                            "name": "piCompany",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "pcBranch",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "piOrdNum",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "cFilterName",
+                            "type": "REQUEST_BODY"
+                        }
+                    ]
+                },
+                {
+                    "name": "getOrderLines",
+                    "path": "\/getOrderLines?filter={filter}",
+                    "type": "invoke",
+                    "verb": "put",
+                    "params": [
+                        {
+                            "name": "piCompany",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "pcBranch",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "piOrdNum",
+                            "type": "REQUEST_BODY"
+                        },
+                        {
+                            "name": "cFilterName",
+                            "type": "REQUEST_BODY"
+                        }
+                    ]
                 }
             ]
         }]
