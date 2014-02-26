@@ -46,7 +46,7 @@ CLASS op.order INHERITS BusinessEntity:
     
     DEFINE VARIABLE beopoheader AS CLASS op.beopoheader NO-UNDO .
     beopoheader = NEW op.beopoheader () .
-
+ 
     beopoheader:fetchOrderHeaderData
       (INPUT filter, OUTPUT DATASET dsop_oheader) .
 

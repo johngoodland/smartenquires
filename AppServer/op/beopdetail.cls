@@ -43,7 +43,7 @@ CLASS op.beopdetail :
         INPUT  piOrdNum    AS INTEGER,
         INPUT  cFilterName AS CHARACTER,
         OUTPUT DATASET FOR dsop_detail) :
-     
+       
         daopdetail:fetchOrderLinesData
             (INPUT piCompany, INPUT pcBranch, INPUT piOrdNum, INPUT cFilterName, OUTPUT DATASET dsop_detail) .
             

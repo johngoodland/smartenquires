@@ -35,10 +35,13 @@ CLASS op.daopoheader :
 	  DEFINE VARIABLE iLoop               AS INTEGER   NO-UNDO.
 	  DEFINE VARIABLE cHeaderLocationName AS CHARACTER NO-UNDO.
 	  DEFINE VARIABLE cHeaderSpecialInstructions AS CHARACTER NO-UNDO.
+	  DEFINE VARIABLE cSupplierName       AS CHARACTER NO-UNDO.
+	  DEFINE VARIABLE cOrdStatus          AS CHARACTER NO-UNDO.
 	  
 	  DEFINE BUFFER bop_oHeader  FOR op_oheader.
 	  DEFINE BUFFER boa_location FOR oa_location.
 	  DEFINE BUFFER bop_textfile FOR op_textfile. 
+	  DEFINE BUFFER boa_supplier FOR oa_supplier.
  /*
 	  DEFINE QUERY qopoheader FOR op_oheader.
     DEFINE QUERY qoopTextfile FOR op_textfile, ttop_oheader.
@@ -64,13 +67,22 @@ CLASS op.daopoheader :
     FOR EACH bop_oHeader /* header filter say company? */ NO-LOCK.
       ASSIGN
         cHeaderLocationName = ""
-        cHeaderSpecialInstructions = "".
+        cHeaderSpecialInstructions = ""
+        cSupplierName = ""
+        cOrdStatus = "".
       FOR FIRST boa_location 
           FIELD(name)
           WHERE boa_location.company = bop_oHeader.coy
             AND boa_location.brncod  = bop_oHeader.branch NO-LOCK:
         ASSIGN
           cHeaderLocationName = boa_location.name.
+      END.
+      FOR FIRST boa_supplier
+          FIELD(abbname)
+          WHERE boa_supplier.comp = bop_oHeader.coy
+            AND boa_supplier.supp = bop_oHeader.acccod NO-LOCK:
+        ASSIGN 
+          cSupplierName = boa_supplier.abbname.
       END.
       FOR FIRST bop_textfile 
           FIELD(txtstr)
@@ -81,8 +93,47 @@ CLASS op.daopoheader :
             ASSIGN cHeaderSpecialInstructions = cHeaderSpecialInstructions + bop_textfile.txtstr[iloop].
         END.
       END.
+      CASE bop_oHeader.ordsta:
+        WHEN "o" THEN cOrdStatus = "Outstanding".
+        WHEN "h" THEN cOrdStatus = "held".
+        WHEN "d" THEN cOrdStatus = "Deleted".
+        WHEN "c" THEN cOrdStatus = "Completed".
+        WHEN "a" THEN cOrdStatus = "Approved".
+        OTHERWISE cOrdStatus = bop_oHeader.ordsta.
+      END CASE. 
       CREATE ttop_oheader.
-      BUFFER-COPY bop_oheader TO ttop_oHeader ASSIGN clocationName = cHeaderLocationName cedtSpecialInstruc = cHeaderSpecialInstructions.
+      BUFFER-COPY bop_oheader TO ttop_oHeader 
+        ASSIGN 
+          clocationName = cHeaderLocationName 
+          cedtSpecialInstruc = cHeaderSpecialInstructions 
+          cSuppName = cSupplierName
+          deladd1 = deladd[1]
+          deladd2 = deladd[2]
+          deladd3 = deladd[3]
+          deladd4 = deladd[4]
+          deladd5 = deladd[5]
+          invadd1 = invadd[1]
+          invadd2 = invadd[2] 
+          invadd3 = invadd[3]
+          invadd4 = invadd[4]
+          invadd5 = invadd[5]
+          ordadd1 = ordadd[1]
+          ordadd2 = ordadd[2]
+          ordadd3 = ordadd[3] 
+          ordadd4 = ordadd[4]
+          ordadd5 = ordadd[5]
+          ocommt1 = ocommt[1]
+          ocommt2 = ocommt[2]  
+          ocommt3 = ocommt[3]
+          ocommt4 = ocommt[4]
+          ocommt5 = ocommt[5]
+          ocommt6 = ocommt[6]  
+          ocommt7 = ocommt[7] 
+          ocommt8 = ocommt[8]  
+          ocommt9 = ocommt[9]  
+          ocommt10 = ocommt[10] 
+          cOrderStatus = cOrdStatus.
+          
     END.
      
 	  DATASET dsop_oheader:FILL() . 
