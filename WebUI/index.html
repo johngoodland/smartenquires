@@ -1,14 +1,18 @@
 <html ng-app="EnquiryApp">  
    <head>
       <title>POP Smart Enquiry</title>  
-		<link href="Content/bootstrap.min.css" rel="stylesheet" />
-		<link href="Content/bootstrap-responsive.min.css" rel="stylesheet" />
-	  
+		<link href="Content/bootstrap.min.css" rel="stylesheet">
+		
 		<link href="Content/ng-grid.css" rel="stylesheet" />
 		<link href="Content/enquiry.css" rel="stylesheet" />
 		
-		<script src="Library/jquery-1.9.1.js"></script>
- 		<!-- <script src="Library/angular/angular.js"></script> -->
+        <!-- production mode only -->
+        <script src = "http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <!-- Live mode as we want the code to determine itself if we are using http or https
+        <script src = "//code.jquery.com/jquery-1.10.2.min.js"></script>
+        -->
+		<script src="Library/bootstrap.min.js"></script>
+		
 		<script src="Library/angular/angular.min.js"></script>
 		<script src="Library/angular-route/angular-route.js"></script>
 		
@@ -26,50 +30,15 @@
 		<script src="app/services.js"></script>
 		
 		<script src="app/controllers/GridCtrl.js"></script>
-		<script src="app/controllers/FirstTabCtrl.js"></script>
- 		<script src="app/controllers/SecondTabCtrl.js"></script>
-		<script src="app/controllers/ThirdTabCtrl.js"></script>
 		
     </head>
 	
- 	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<img src="Content/Images/people.png" alt="logo"> POP Smart Enquiry
-				<ul class="nav nav-pills">
-					<li ><a href="#/query">Query</a></li>
-					<li ><a href="#/notes">Notes</a></li>
-					<li ><a href="#/contacts">Contacts</a></li>
-					<li ><a href="#/attachments">Attachments</a></li>
-					<li ><a href="#/help">Help</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
- 
+
+	<div ng-include src="'app/templates/pageheader.html'"></div>
+
 	<!-- <div class="container" ui-view>	</div> -->
 	<div animated-view></div>
 	
-    <div id="footer">
-        <div class="navbar navbar-fixed-bottom">
-            <div class="navbar-inner">
-                <div class="container">
-                    <footer>
-                        <div class="row">
-                            <div class="span4">
-                                Created by Martyn Kemp
-                            </div>
-                            <div class="span4">
-                                @Copyright 2014
-                            </div>
-                            <div class="span4">
-                                Contact: <a href="//www.advancedcomputersoftware.com/abs/products/openaccounts.php">OpenAccounts</a>
-                            </div>
-                        </div>
-                   </footer>
-                </div>
-            </div>
-        </div>
-    </div>
-   
+	<div ng-include src="'app/templates/footer.html'"></div>   
+	
 </html>

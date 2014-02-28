@@ -5,5 +5,5 @@
     <div class="ngSortPriority">{{col.sortPriority}}</div>
     <div ng-class="{ ngPinnedIcon: col.pinned, ngUnPinnedIcon: !col.pinned }" ng-click="togglePin(col)" ng-show="col.pinnable"></div>
 </div>
-<input type="text" ng-click="stopClickProp($event)" placeholder="Filter..." ng-model="col.filterText" ng-style="{ 'width' : col.width - 14 + 'px' }" style="position: absolute; top: 30px; bottom: 30px; left: 0; bottom:0;"/>
+<input type="text" ng-click="stopClickProp($event)" placeholder="Filter..." ng-model="col.filterText" ng-style="{ 'width' : col.width - 8 + 'px' }" style="height: 25px; position: absolute; top: 30px; bottom: 30px; left: 3px; bottom:0;"/>
 <div ng-show="col.resizable" class="ngHeaderGrip" ng-click="col.gripClick($event)" ng-mousedown="col.gripOnMouseDown($event)"></div>

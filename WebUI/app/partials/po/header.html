@@ -1,6 +1,161 @@
-<div class="TabFolderRow" >
-	
-	<table>
+ <div class="TabFolderRow" >
+	<div class = "container">
+		<br>
+		<div class = "row">
+			<div class = "col-md-2">
+				<label style="text-align:right;">Department:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].branch}}</>
+			</div>
+			<div class = "col-md-4">
+				<type = "text" style="text-align:left;">Description for D1</>
+			</div>		
+			<div class = "col-md-2">
+				<label style="text-align:right;">Status:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ordsta}}</>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-2">
+				<label style="text-align:right;">Supplier:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].acccod}}</>
+			</div>
+			<div class = "col-md-8">
+				<type = "text" style="text-align:left;">Supplier Name</>
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class = "row">
+			<div class = "col-md-2">
+				<label style="text-align:right;">Address:</label>
+			</div>
+			<div class = "col-md-10">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ordadd1}}</>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-2"></div>
+			<div class = "col-md-10">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ordadd2}}</>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-2"></div>
+			<div class = "col-md-10">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ordadd3}}</>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-2"></div>
+			<div class = "col-md-10">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ordadd4}}</>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-2"></div>
+			<div class = "col-md-10">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ordadd5}}</>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-md-2"><label style="text-align:right;">PostCode:</label></div>
+			<div class = "col-md-10">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ordcode}}</>
+			</div>
+		</div>
+		
+		<div class = "row">
+			<div class = "col-md-2">
+				<label style="text-align:right;">Order Number:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ordnum}}</>
+			</div>
+			<div class = "col-md-2">
+				<label style="text-align:right;">Order Value:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ordval | number:2}}</>
+			</div>
+			<div class = "col-md-2">
+				<label style="text-align:right;">Currency:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].curcod}}</>
+			</div>
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-2">
+				<label style="text-align:right;">Order Date:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].orddat | date:'dd/MM/yyyy'}}</>
+			</div>
+			<div class = "col-md-2">
+				<label style="text-align:right;">Base Value:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].basval | number:2}}</>
+			</div>
+			<div class = "col-md-2">
+				<label style="text-align:right;">Base Currency:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].curcod}}</>
+			</div>
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-2">
+				<label style="text-align:right;">GRN Required:</label>
+			</div>
+			<div class = "col-md-2">
+				<type = "text" style="text-align:left;">{{selectedRows[0].pornum}}</>
+			</div>
+		</div>
+		
+		<div class = "row">
+			<div class = "col-md-2">
+				<label style="text-align:right;">Contact Name:</label>
+			</div>
+			<div class = "col-md-4">
+				<type = "text" style="text-align:left;">{{selectedRows[0].connam}}</>
+			</div>
+			<div class = "col-md-2">
+				<label style="text-align:right;">Phone:</label>
+			</div>
+			<div class = "col-md-4">
+				<type = "text" style="text-align:left;">{{selectedRows[0].telnum}}</>
+			</div>
+			
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-2">
+				<label style="text-align:right;">Their Ref:</label>
+			</div>
+			<div class = "col-md-4">
+				<type = "text" style="text-align:left;">{{selectedRows[0].cusref}}</>
+			</div>
+			<div class = "col-md-2">
+				<label style="text-align:right;">Our Ref:</label>
+			</div>
+			<div class = "col-md-4">
+				<type = "text" style="text-align:left;">{{selectedRows[0].ourref}}</>
+			</div>
+		</div>
+		
+	</div>
+</div>	
+<!-- 	<table>
 		<tr>
 			<td width="150" align="right"><strong>Department:</strong></td>
 			<td width="100">{{selectedRows[0].branch}}</td>
@@ -73,3 +228,4 @@
 	</table>
 	
 </div>	
+ -->
